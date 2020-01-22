@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Cassanello.Web.Datos.Entidades.Visitador>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Lista de Visitadores</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo registro</a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="bg-primary">
+            <th>
+                @Html.DisplayNameFor(model => model.NomVisitador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApeVisitador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Linea)
+            </th>
+            <th>
+                Acciones
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomVisitador)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApeVisitador)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Linea)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalle</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

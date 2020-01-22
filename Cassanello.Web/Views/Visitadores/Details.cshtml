@@ -1,0 +1,42 @@
+﻿@model Cassanello.Web.Datos.Entidades.Visitador
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Visitador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomVisitador)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NomVisitador)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApeVisitador)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApeVisitador)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Linea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Linea)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
