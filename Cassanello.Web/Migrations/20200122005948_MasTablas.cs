@@ -8,7 +8,7 @@ namespace Cassanello.Web.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "LaboratorioId",
+                name: "Id",
                 table: "Visitadores",
                 nullable: true);
 
@@ -51,14 +51,14 @@ namespace Cassanello.Web.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Visitadores_LaboratorioId",
+                name: "IX_Visitadores_Id",
                 table: "Visitadores",
-                column: "LaboratorioId");
+                column: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Visitadores_Laboratorios_LaboratorioId",
+                name: "FK_Visitadores_Laboratorios_Id",
                 table: "Visitadores",
-                column: "LaboratorioId",
+                column: "Id",
                 principalTable: "Laboratorios",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
@@ -67,7 +67,7 @@ namespace Cassanello.Web.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Visitadores_Laboratorios_LaboratorioId",
+                name: "FK_Visitadores_Laboratorios_Id",
                 table: "Visitadores");
 
             migrationBuilder.DropTable(
@@ -80,11 +80,11 @@ namespace Cassanello.Web.Migrations
                 name: "Productos");
 
             migrationBuilder.DropIndex(
-                name: "IX_Visitadores_LaboratorioId",
+                name: "IX_Visitadores_Id",
                 table: "Visitadores");
 
             migrationBuilder.DropColumn(
-                name: "LaboratorioId",
+                name: "Id",
                 table: "Visitadores");
         }
     }

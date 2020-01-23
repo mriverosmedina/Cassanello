@@ -12,8 +12,8 @@ namespace Cassanello.Web.Datos
 
         public DbSet<Visitador> Visitadores { get; set; }
         public DbSet<Laboratorio> Laboratorios { get; set; }
-        public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Producto> Productos { get; set; }       
+        //public DbSet<Cliente> Clientes { get; set; }
+        //public DbSet<Producto> Productos { get; set; }       
 
 
     }

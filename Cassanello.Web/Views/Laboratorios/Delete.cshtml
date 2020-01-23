@@ -1,4 +1,4 @@
-﻿@model Cassanello.Web.Datos.Entidades.Visitador
+﻿@model Cassanello.Web.Datos.Entidades.Laboratorio
 
 @{
     ViewData["Title"] = "Delete";
@@ -8,26 +8,20 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Visitador</h4>
+    <h4>Laboratorio</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.NomVisitador)
+            @Html.DisplayNameFor(model => model.CodLaboratorio)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.NomVisitador)
-        </dd>      
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Telefono)
+            @Html.DisplayFor(model => model.CodLaboratorio)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Laboratorio)
+            @Html.DisplayNameFor(model => model.NomLaboratorio)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Laboratorio)
+            @Html.DisplayFor(model => model.NomLaboratorio)
         </dd>
     </dl>
     

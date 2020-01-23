@@ -1,28 +1,31 @@
-﻿using Cassanello.Web.Datos;
-using Cassanello.Web.Datos.Entidades;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Cassanello.Web.Datos;
+using Cassanello.Web.Datos.Entidades;
 
 namespace Cassanello.Web.Controllers
 {
-    public class VisitadoresController : Controller
+    public class LaboratoriosController : Controller
     {
         private readonly DataContext _context;
 
-        public VisitadoresController(DataContext context)
+        public LaboratoriosController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: Visitadores
+        // GET: Laboratorios
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Visitadores.ToListAsync());
+            return View(await _context.Laboratorios.ToListAsync());
         }
 
-        // GET: Visitadores/Details/5
+        // GET: Laboratorios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -30,37 +33,39 @@ namespace Cassanello.Web.Controllers
                 return NotFound();
             }
 
-            var visitador = await _context.Visitadores
+            var laboratorio = await _context.Laboratorios
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (visitador == null)
+            if (laboratorio == null)
             {
                 return NotFound();
             }
 
-            return View(visitador);
+            return View(laboratorio);
         }
 
-        // GET: Visitadores/Create
+        // GET: Laboratorios/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Visitadores/Create        
+        // POST: Laboratorios/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Visitador visitador)
+        public async Task<IActionResult> Create([Bind("Id,CodLaboratorio,NomLaboratorio")] Laboratorio laboratorio)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(visitador);
+                _context.Add(laboratorio);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(visitador);
+            return View(laboratorio);
         }
 
-        // GET: Visitadores/Edit/5
+        // GET: Laboratorios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -68,20 +73,22 @@ namespace Cassanello.Web.Controllers
                 return NotFound();
             }
 
-            var visitador = await _context.Visitadores.FindAsync(id);
-            if (visitador == null)
+            var laboratorio = await _context.Laboratorios.FindAsync(id);
+            if (laboratorio == null)
             {
                 return NotFound();
             }
-            return View(visitador);
+            return View(laboratorio);
         }
 
-        // POST: Visitadores/Edit/5        
+        // POST: Laboratorios/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Visitador visitador)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CodLaboratorio,NomLaboratorio")] Laboratorio laboratorio)
         {
-            if (id != visitador.Id)
+            if (id != laboratorio.Id)
             {
                 return NotFound();
             }
@@ -90,12 +97,12 @@ namespace Cassanello.Web.Controllers
             {
                 try
                 {
-                    _context.Update(visitador);
+                    _context.Update(laboratorio);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VisitadorExists(visitador.Id))
+                    if (!LaboratorioExists(laboratorio.Id))
                     {
                         return NotFound();
                     }
@@ -106,10 +113,10 @@ namespace Cassanello.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(visitador);
+            return View(laboratorio);
         }
 
-        // GET: Visitadores/Delete/5
+        // GET: Laboratorios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -117,30 +124,30 @@ namespace Cassanello.Web.Controllers
                 return NotFound();
             }
 
-            var visitador = await _context.Visitadores
+            var laboratorio = await _context.Laboratorios
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (visitador == null)
+            if (laboratorio == null)
             {
                 return NotFound();
             }
 
-            return View(visitador);
+            return View(laboratorio);
         }
 
-        // POST: Visitadores/Delete/5
+        // POST: Laboratorios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var visitador = await _context.Visitadores.FindAsync(id);
-            _context.Visitadores.Remove(visitador);
+            var laboratorio = await _context.Laboratorios.FindAsync(id);
+            _context.Laboratorios.Remove(laboratorio);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VisitadorExists(int id)
+        private bool LaboratorioExists(int id)
         {
-            return _context.Visitadores.Any(e => e.Id == id);
+            return _context.Laboratorios.Any(e => e.Id == id);
         }
     }
 }

@@ -68,9 +68,9 @@ namespace Cassanello.Web.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int?>("LaboratorioId");
+                    b.Property<int?>("Id");
 
-                    b.Property<int>("Linea");
+                    b.Property<int>("Laboratorio");
 
                     b.Property<string>("NomVisitador")
                         .IsRequired()
@@ -81,7 +81,7 @@ namespace Cassanello.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LaboratorioId");
+                    b.HasIndex("Id");
 
                     b.ToTable("Visitadores");
                 });
@@ -90,7 +90,7 @@ namespace Cassanello.Web.Migrations
                 {
                     b.HasOne("Cassanello.Web.Datos.Entidades.Laboratorio", "Laboratorio")
                         .WithMany("Visitadores")
-                        .HasForeignKey("LaboratorioId");
+                        .HasForeignKey("Id");
                 });
 #pragma warning restore 612, 618
         }

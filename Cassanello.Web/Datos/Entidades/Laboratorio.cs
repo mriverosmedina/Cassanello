@@ -17,7 +17,7 @@ namespace Cassanello.Web.Datos.Entidades
         [MaxLength(50, ErrorMessage = "El {0} no puede contener mas de {1} caracteres.")]
         public string NomLaboratorio { get; set; }
 
-        public ICollection<Visitador> Visitadores { get; set; }
+        //public ICollection<Visitador> Visitadores { get; set; }
 
 
 
