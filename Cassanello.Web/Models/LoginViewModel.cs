@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MyVet.Web.Models
+namespace Cassanello.Web.Models
 {
     public class LoginViewModel
     {

@@ -1,4 +1,5 @@
 ﻿using Cassanello.Web.Datos.Entidades;
+using Cassanello.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,16 @@ namespace Cassanello.Web.Helpers
     {
         private readonly UserManager<Usuario> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<Usuario> _signInManager;
+
 
         public UserHelper(UserManager<Usuario> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            SignInManager<Usuario> signInManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
         }
 
 
@@ -52,6 +57,16 @@ namespace Cassanello.Web.Helpers
         public async Task<bool> IsUserInRoleAsync(Usuario user, string roleName)
         {
             return await _userManager.IsInRoleAsync(user, roleName);
+        }
+
+        public Task<SignInResult> LoginAsync(LoginViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task LogoutAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }
