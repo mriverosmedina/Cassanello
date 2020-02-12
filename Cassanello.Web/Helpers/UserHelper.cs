@@ -14,7 +14,6 @@ namespace Cassanello.Web.Helpers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<Usuario> _signInManager;
 
-
         public UserHelper(UserManager<Usuario> userManager,
             RoleManager<IdentityRole> roleManager,
             SignInManager<Usuario> signInManager)
@@ -59,14 +58,14 @@ namespace Cassanello.Web.Helpers
             return await _userManager.IsInRoleAsync(user, roleName);
         }
 
-        public Task<SignInResult> LoginAsync(LoginViewModel model)
+        public async Task<SignInResult> LoginAsync(LoginViewModel model)
         {
-            throw new NotImplementedException();
+            return await _signInManager.PasswordSignInAsync(model.Username,model.Password,model.RememberMe,false);
         }
 
-        public Task LogoutAsync()
+        public async Task LogoutAsync()
         {
-            throw new NotImplementedException();
+            await _signInManager.SignOutAsync();
         }
     }
 }
