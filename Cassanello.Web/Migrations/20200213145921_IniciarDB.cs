@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cassanello.Web.Migrations
 {
-    public partial class IniciarDb : Migration
+    public partial class IniciarDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,10 +13,10 @@ namespace Cassanello.Web.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    NomVisitador = table.Column<string>(maxLength: 50, nullable: false),
-                    ApeVisitador = table.Column<string>(maxLength: 50, nullable: false),
-                    Telefono = table.Column<string>(maxLength: 20, nullable: true),
-                    Linea = table.Column<int>(nullable: false)
+                    Document = table.Column<string>(maxLength: 20, nullable: false),
+                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(maxLength: 50, nullable: false),
+                    CellPhone = table.Column<string>(maxLength: 20, nullable: true)
                 },
                 constraints: table =>
                 {

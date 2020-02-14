@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cassanello.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200120190338_IniciarDb")]
-    partial class IniciarDb
+    [Migration("20200213145921_IniciarDB")]
+    partial class IniciarDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,18 +26,20 @@ namespace Cassanello.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApeVisitador")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<int>("Linea");
-
-                    b.Property<string>("NomVisitador")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Telefono")
+                    b.Property<string>("CellPhone")
                         .HasMaxLength(20);
+
+                    b.Property<string>("Document")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
