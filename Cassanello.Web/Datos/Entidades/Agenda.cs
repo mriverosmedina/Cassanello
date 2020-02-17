@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Cassanello.Web.Datos.Entidades
 {
@@ -14,7 +11,7 @@ namespace Cassanello.Web.Datos.Entidades
         [Required(ErrorMessage = "The field {0} is mandatory.")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd H:mm tt}", ApplyFormatInEditMode = true)]
-        public DateTime Date { get; set; }      
+        public DateTime Date { get; set; }
 
         public string Remarks { get; set; }
 
@@ -24,6 +21,9 @@ namespace Cassanello.Web.Datos.Entidades
         [Display(Name = "Fecha Local")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd H:mm tt}")]
         public DateTime DateLocal => Date.ToLocalTime();
+
+        public Visitador Visitador { get; set; }
+        public Medico Medico { get; set; }
 
     }
 }

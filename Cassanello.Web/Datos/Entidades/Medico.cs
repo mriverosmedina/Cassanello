@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cassanello.Web.Datos.Entidades
@@ -33,7 +34,17 @@ namespace Cassanello.Web.Datos.Entidades
             : $"https://TDB.azurewebsites.net{ImageUrl.Substring(1)}";
 
         [Display(Name = "Nacimiento Local")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd")]
         public DateTime BornLocal => Born.ToLocalTime();
+
+
+        public Especialidad Especialidad { get; set; }
+
+        public Visitador Visitador { get; set; }
+
+        public ICollection<Historico> Historicos { get; set; }
+
+
+
     }
 }

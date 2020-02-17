@@ -27,6 +27,8 @@ namespace Cassanello.Web.Datos.Entidades
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}")]
         public DateTime DateLocal => Date.ToLocalTime();
 
+       public Medico Medico { get; set; }
+
 
     }
 }
