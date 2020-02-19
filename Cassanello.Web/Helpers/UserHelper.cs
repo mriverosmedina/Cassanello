@@ -18,34 +18,36 @@ namespace Cassanello.Web.Helpers
             _userManager = userManager;
             _roleManager = roleManager;
         }
-
-
-
-
-        public Task<IdentityResult> AddUserAsync(Usuario user, string password)
+        public async Task<IdentityResult> AddUserAsync(Usuario user, string password)
         {
             return await _userManager.CreateAsync(user, password);
-
         }
 
-        public Task AddUserToRoleAsync(Usuario user, string roleName)
+        public async Task AddUserToRoleAsync(Usuario user, string roleName)
         {
-            throw new NotImplementedException();
+            await _userManager.AddToRoleAsync(user, roleName);
         }
 
-        public Task CheckRoleAsync(string roleName)
+        public async Task CheckRoleAsync(string roleName)
         {
-            throw new NotImplementedException();
+            var roleExists = await _roleManager.RoleExistsAsync(roleName);
+            if (!roleExists)
+            {
+                await _roleManager.CreateAsync(new IdentityRole
+                {
+                    Name = roleName
+                });
+            }
         }
 
-        public Task<Usuario> GetUserByEmailAsync(string email)
+        public async Task<Usuario> GetUserByEmailAsync(string email)
         {
-            throw new NotImplementedException();
+        return await _userManager.FindByEmailAsync(email);    
         }
 
-        public Task<bool> IsUserInRoleAsync(Usuario user, string roleName)
+        public async Task<bool> IsUserInRoleAsync(Usuario user, string roleName)
         {
-            throw new NotImplementedException();
+            return await _userManager.IsInRoleAsync(user, roleName);
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cassanello.Web.Helpers
 {
-    interface IUserHelper
+    public interface IUserHelper
     {
         Task<Usuario> GetUserByEmailAsync(string email);
 

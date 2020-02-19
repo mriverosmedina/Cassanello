@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace Cassanello.Web.Controllers
 {
-    public class VisitadoresController : Controller
+    public class ManagersController : Controller
     {
         private readonly DataContext _context;
 
-        public VisitadoresController(DataContext context)
+        public ManagersController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: Visitadores
+        // GET: Managers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Visitadores.ToListAsync());
+            return View(await _context.Managers.ToListAsync());
         }
 
-        // GET: Visitadores/Details/5
+        // GET: Managers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -30,39 +30,39 @@ namespace Cassanello.Web.Controllers
                 return NotFound();
             }
 
-            var visitador = await _context.Visitadores
+            var manager = await _context.Managers
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (visitador == null)
+            if (manager == null)
             {
                 return NotFound();
             }
 
-            return View(visitador);
+            return View(manager);
         }
 
-        // GET: Visitadores/Create
+        // GET: Managers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Visitadores/Create
+        // POST: Managers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] Visitador visitador)
+        public async Task<IActionResult> Create([Bind("Id")] Manager manager)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(visitador);
+                _context.Add(manager);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(visitador);
+            return View(manager);
         }
 
-        // GET: Visitadores/Edit/5
+        // GET: Managers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -70,22 +70,22 @@ namespace Cassanello.Web.Controllers
                 return NotFound();
             }
 
-            var visitador = await _context.Visitadores.FindAsync(id);
-            if (visitador == null)
+            var manager = await _context.Managers.FindAsync(id);
+            if (manager == null)
             {
                 return NotFound();
             }
-            return View(visitador);
+            return View(manager);
         }
 
-        // POST: Visitadores/Edit/5
+        // POST: Managers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] Visitador visitador)
+        public async Task<IActionResult> Edit(int id, [Bind("Id")] Manager manager)
         {
-            if (id != visitador.Id)
+            if (id != manager.Id)
             {
                 return NotFound();
             }
@@ -94,12 +94,12 @@ namespace Cassanello.Web.Controllers
             {
                 try
                 {
-                    _context.Update(visitador);
+                    _context.Update(manager);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VisitadorExists(visitador.Id))
+                    if (!ManagerExists(manager.Id))
                     {
                         return NotFound();
                     }
@@ -110,10 +110,10 @@ namespace Cassanello.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(visitador);
+            return View(manager);
         }
 
-        // GET: Visitadores/Delete/5
+        // GET: Managers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -121,30 +121,30 @@ namespace Cassanello.Web.Controllers
                 return NotFound();
             }
 
-            var visitador = await _context.Visitadores
+            var manager = await _context.Managers
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (visitador == null)
+            if (manager == null)
             {
                 return NotFound();
             }
 
-            return View(visitador);
+            return View(manager);
         }
 
-        // POST: Visitadores/Delete/5
+        // POST: Managers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var visitador = await _context.Visitadores.FindAsync(id);
-            _context.Visitadores.Remove(visitador);
+            var manager = await _context.Managers.FindAsync(id);
+            _context.Managers.Remove(manager);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VisitadorExists(int id)
+        private bool ManagerExists(int id)
         {
-            return _context.Visitadores.Any(e => e.Id == id);
+            return _context.Managers.Any(e => e.Id == id);
         }
     }
 }
