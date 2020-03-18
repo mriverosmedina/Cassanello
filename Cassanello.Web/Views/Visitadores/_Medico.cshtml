@@ -1,0 +1,49 @@
+﻿@model Cassanello.Web.Models.MedicoViewModel
+
+<div class="form-group">
+    <label asp-for="Registro" class="control-label"></label>
+    <input asp-for="Registro" class="form-control" />
+    <span asp-validation-for="Registro" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Name" class="control-label"></label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="ImageFile" class="control-label"></label>
+    <input asp-for="ImageFile" class="form-control" type="file" />
+    <span asp-validation-for="ImageFile" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="EspecialidadId" class="control-label"></label>
+    <select asp-for="EspecialidadId" asp-items="Model.Especialidades" class="form-control"></select>
+    <span asp-validation-for="EspecialidadId" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Aniversario" class="control-label"></label>
+    <input asp-for="Aniversario" class="form-control" />
+    <span asp-validation-for="Aniversario" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Direccion" class="control-label"></label>
+    <input asp-for="Direccion" class="form-control" />
+    <span asp-validation-for="Direccion" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Lugar" class="control-label"></label>
+    <input asp-for="Lugar" class="form-control" />
+    <span asp-validation-for="Lugar" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Remarks" class="control-label"></label>
+    <textarea asp-for="Remarks" class="form-control"></textarea>
+    <span asp-validation-for="Remarks" class="text-danger"></span>
+</div>

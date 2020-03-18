@@ -1,30 +1,31 @@
-﻿using Cassanello.Web.Datos;
-using Cassanello.Web.Datos.Entidades;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Cassanello.Web.Datos;
+using Cassanello.Web.Datos.Entidades;
 
 namespace Cassanello.Web.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class ManagersController : Controller
+    public class LaboratoriosController : Controller
     {
         private readonly DataContext _context;
 
-        public ManagersController(DataContext context)
+        public LaboratoriosController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: Managers
+        // GET: Laboratorios
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Managers.ToListAsync());
+            return View(await _context.Laboratorios.ToListAsync());
         }
 
-        // GET: Managers/Details/5
+        // GET: Laboratorios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +33,39 @@ namespace Cassanello.Web.Controllers
                 return NotFound();
             }
 
-            var manager = await _context.Managers
+            var laboratorio = await _context.Laboratorios
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (manager == null)
+            if (laboratorio == null)
             {
                 return NotFound();
             }
 
-            return View(manager);
+            return View(laboratorio);
         }
 
-        // GET: Managers/Create
+        // GET: Laboratorios/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Managers/Create
+        // POST: Laboratorios/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] Manager manager)
+        public async Task<IActionResult> Create([Bind("Id,Codigo,Descripcion")] Laboratorio laboratorio)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(manager);
+                _context.Add(laboratorio);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(manager);
+            return View(laboratorio);
         }
 
-        // GET: Managers/Edit/5
+        // GET: Laboratorios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +73,22 @@ namespace Cassanello.Web.Controllers
                 return NotFound();
             }
 
-            var manager = await _context.Managers.FindAsync(id);
-            if (manager == null)
+            var laboratorio = await _context.Laboratorios.FindAsync(id);
+            if (laboratorio == null)
             {
                 return NotFound();
             }
-            return View(manager);
+            return View(laboratorio);
         }
 
-        // POST: Managers/Edit/5
+        // POST: Laboratorios/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] Manager manager)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Codigo,Descripcion")] Laboratorio laboratorio)
         {
-            if (id != manager.Id)
+            if (id != laboratorio.Id)
             {
                 return NotFound();
             }
@@ -96,12 +97,12 @@ namespace Cassanello.Web.Controllers
             {
                 try
                 {
-                    _context.Update(manager);
+                    _context.Update(laboratorio);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ManagerExists(manager.Id))
+                    if (!LaboratorioExists(laboratorio.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +113,10 @@ namespace Cassanello.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(manager);
+            return View(laboratorio);
         }
 
-        // GET: Managers/Delete/5
+        // GET: Laboratorios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +124,30 @@ namespace Cassanello.Web.Controllers
                 return NotFound();
             }
 
-            var manager = await _context.Managers
+            var laboratorio = await _context.Laboratorios
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (manager == null)
+            if (laboratorio == null)
             {
                 return NotFound();
             }
 
-            return View(manager);
+            return View(laboratorio);
         }
 
-        // POST: Managers/Delete/5
+        // POST: Laboratorios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var manager = await _context.Managers.FindAsync(id);
-            _context.Managers.Remove(manager);
+            var laboratorio = await _context.Laboratorios.FindAsync(id);
+            _context.Laboratorios.Remove(laboratorio);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ManagerExists(int id)
+        private bool LaboratorioExists(int id)
         {
-            return _context.Managers.Any(e => e.Id == id);
+            return _context.Laboratorios.Any(e => e.Id == id);
         }
     }
 }

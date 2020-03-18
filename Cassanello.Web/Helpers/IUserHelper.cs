@@ -1,4 +1,5 @@
 ﻿using Cassanello.Web.Datos.Entidades;
+using Cassanello.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,14 @@ namespace Cassanello.Web.Helpers
         Task AddUserToRoleAsync(Usuario user, string roleName);
 
         Task<bool> IsUserInRoleAsync(Usuario user, string roleName);
+
+        Task<SignInResult> LoginAsync(LoginViewModel Model);
+
+        Task LogoutAsync();
+
+        Task<bool> DeleteUserAsync(string email);
+
+        Task<IdentityResult> UpdateUserAsync(Usuario usurio);
 
     }
 }

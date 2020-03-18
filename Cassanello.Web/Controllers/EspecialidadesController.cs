@@ -1,30 +1,31 @@
-﻿using Cassanello.Web.Datos;
-using Cassanello.Web.Datos.Entidades;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Cassanello.Web.Datos;
+using Cassanello.Web.Datos.Entidades;
 
 namespace Cassanello.Web.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class ManagersController : Controller
+    public class EspecialidadesController : Controller
     {
         private readonly DataContext _context;
 
-        public ManagersController(DataContext context)
+        public EspecialidadesController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: Managers
+        // GET: Especialidades
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Managers.ToListAsync());
+            return View(await _context.Especialidades.ToListAsync());
         }
 
-        // GET: Managers/Details/5
+        // GET: Especialidades/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +33,39 @@ namespace Cassanello.Web.Controllers
                 return NotFound();
             }
 
-            var manager = await _context.Managers
+            var especialidad = await _context.Especialidades
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (manager == null)
+            if (especialidad == null)
             {
                 return NotFound();
             }
 
-            return View(manager);
+            return View(especialidad);
         }
 
-        // GET: Managers/Create
+        // GET: Especialidades/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Managers/Create
+        // POST: Especialidades/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] Manager manager)
+        public async Task<IActionResult> Create([Bind("Id,Codigo,Descripcion")] Especialidad especialidad)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(manager);
+                _context.Add(especialidad);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(manager);
+            return View(especialidad);
         }
 
-        // GET: Managers/Edit/5
+        // GET: Especialidades/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +73,22 @@ namespace Cassanello.Web.Controllers
                 return NotFound();
             }
 
-            var manager = await _context.Managers.FindAsync(id);
-            if (manager == null)
+            var especialidad = await _context.Especialidades.FindAsync(id);
+            if (especialidad == null)
             {
                 return NotFound();
             }
-            return View(manager);
+            return View(especialidad);
         }
 
-        // POST: Managers/Edit/5
+        // POST: Especialidades/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] Manager manager)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Codigo,Descripcion")] Especialidad especialidad)
         {
-            if (id != manager.Id)
+            if (id != especialidad.Id)
             {
                 return NotFound();
             }
@@ -96,12 +97,12 @@ namespace Cassanello.Web.Controllers
             {
                 try
                 {
-                    _context.Update(manager);
+                    _context.Update(especialidad);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ManagerExists(manager.Id))
+                    if (!EspecialidadExists(especialidad.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +113,10 @@ namespace Cassanello.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(manager);
+            return View(especialidad);
         }
 
-        // GET: Managers/Delete/5
+        // GET: Especialidades/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +124,30 @@ namespace Cassanello.Web.Controllers
                 return NotFound();
             }
 
-            var manager = await _context.Managers
+            var especialidad = await _context.Especialidades
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (manager == null)
+            if (especialidad == null)
             {
                 return NotFound();
             }
 
-            return View(manager);
+            return View(especialidad);
         }
 
-        // POST: Managers/Delete/5
+        // POST: Especialidades/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var manager = await _context.Managers.FindAsync(id);
-            _context.Managers.Remove(manager);
+            var especialidad = await _context.Especialidades.FindAsync(id);
+            _context.Especialidades.Remove(especialidad);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ManagerExists(int id)
+        private bool EspecialidadExists(int id)
         {
-            return _context.Managers.Any(e => e.Id == id);
+            return _context.Especialidades.Any(e => e.Id == id);
         }
     }
 }

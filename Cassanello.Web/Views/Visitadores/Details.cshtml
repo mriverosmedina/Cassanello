@@ -10,9 +10,109 @@
     <h4>Visitador</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.Document)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Document)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.PhoneNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.PhoneNumber)
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+    <a asp-action="AddMedico" asp-route-id="@Model.Id" class="btn btn-primary">Nuevo medico</a>
+    <a asp-action="Index" class="btn btn-success">Volver a lista</a>
 </div>
+
+@if (Model.Medicos.Count == 0)
+{
+    <h4>No hay medicos cargados</h4>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Imagen
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Medicos.FirstOrDefault().Registro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Medicos.FirstOrDefault().Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Medicos.FirstOrDefault().Especialidad.Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Medicos.FirstOrDefault().Direccion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Medicos.FirstOrDefault().Lugar)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Medicos)
+            {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@Url.Content(item.ImageUrl)" alt="Image" style="width:200px;height:200px;max-width: 30%; height: auto;" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Registro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Especialidad.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lugar)
+                </td>
+
+                <td>
+                    <a asp-action="EditMedico" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
+                    <a asp-action="DetailsMedico" asp-route-id="@item.Id" class="btn btn-info">Detalle</a>
+                    <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<partial name="_DeleteDialog" />

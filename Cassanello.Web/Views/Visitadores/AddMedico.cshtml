@@ -1,0 +1,25 @@
+﻿@model Cassanello.Web.Models.MedicoViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Nuevo registro</h2>
+
+<h4>Médicos</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddMedico" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="VisitadorId" />
+
+            <partial name="_Medico"/>           
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Details" asp-route-id="@Model.VisitadorId" class="btn btn-success">Volver a visitador</a>
+            </div>
+        </form>
+    </div>
+</div>

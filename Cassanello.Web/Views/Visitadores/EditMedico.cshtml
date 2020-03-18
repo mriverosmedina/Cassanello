@@ -1,0 +1,82 @@
+﻿@model Cassanello.Web.Models.MedicoViewModel
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h2>Editar registro</h2>
+
+<h4>Médicos</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditMedico" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="VisitadorId" />
+            <input type="hidden" asp-for="ImageUrl" />
+
+            <div class="form-group">
+                <label asp-for="Registro" class="control-label"></label>
+                <input asp-for="Registro" class="form-control" />
+                <span asp-validation-for="Registro" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" type="file" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EspecialidadId" class="control-label"></label>
+                <select asp-for="EspecialidadId" asp-items="Model.Especialidades" class="form-control"></select>
+                <span asp-validation-for="EspecialidadId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Aniversario" class="control-label"></label>
+                <input asp-for="Aniversario" class="form-control" />
+                <span asp-validation-for="Aniversario" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Direccion" class="control-label"></label>
+                <input asp-for="Direccion" class="form-control" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Lugar" class="control-label"></label>
+                <input asp-for="Lugar" class="form-control" />
+                <span asp-validation-for="Lugar" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Remarks" class="control-label"></label>
+                <textarea asp-for="Remarks" class="form-control"></textarea>
+                <span asp-validation-for="Remarks" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Details" asp-route-id="@Model.VisitadorId" class="btn btn-success">Volver a lista</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <img src="@Url.Content(Model.ImageUrl)" alt="Image" style="width:400px;height:400px;max-width: 100%; height: auto;" />
+        }
+    </div>
+</div>
+
+
