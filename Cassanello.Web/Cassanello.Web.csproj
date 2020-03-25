@@ -13,4 +13,8 @@
     <Folder Include="wwwroot\images\Medicos\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Cassanello.Common\Cassanello.Common.csproj" />
+  </ItemGroup>
+
 </Project>

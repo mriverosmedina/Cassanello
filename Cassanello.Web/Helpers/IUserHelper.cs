@@ -28,5 +28,7 @@ namespace Cassanello.Web.Helpers
 
         Task<IdentityResult> UpdateUserAsync(Usuario usurio);
 
+        Task<SignInResult> ValidatePasswordAsync(Usuario usuario, string password);
+
     }
 }

@@ -25,5 +25,7 @@ namespace Cassanello.Web.Datos
 
         public DbSet<Manager> Managers { get; set; }
 
+        public DbSet<TipoVisita> TipoVisitas { get; set; }
+
     }
 }

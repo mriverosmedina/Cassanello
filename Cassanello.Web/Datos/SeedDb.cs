@@ -21,12 +21,12 @@ namespace Cassanello.Web.Datos
         {
             await _dataContext.Database.EnsureCreatedAsync();
             await CheckRoles();
-            var manager = await CheckUserAsync("1010", "Mario", "Riveros", "tic@cassanello.com.py", "0981728813", "Admin");
+            var manager = await CheckUserAsync("3200051", "Mario", "Riveros", "tic@cassanello.com.py", "0981728813", "Admin");
             var customer = await CheckUserAsync("1020", "Mario", "Riveros", "customer@cassanello.com.py", "0981728888", "Customer");
 
             await CheckEpecialidadAsync();
             //await CheckServiceTypesAsync();
-            await CheckVisitadorAsync(customer);
+            //await CheckVisitadorAsync(customer);
             await CheckManagerAsync(manager);
             //await CheckPetsAsync();
             //await CheckAgendasAsync();

@@ -86,6 +86,15 @@ namespace Cassanello.Web.Helpers
             return await _userManager.UpdateAsync(usuario);
         }
 
+        public async Task<SignInResult> ValidatePasswordAsync(Usuario usuario, string password)
+        {
+            return await _signInManager.CheckPasswordSignInAsync(
+                usuario,
+                password,
+                false);
+        }
+
+
 
 
 
